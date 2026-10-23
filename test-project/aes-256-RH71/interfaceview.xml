@@ -1,0 +1,281 @@
+<InterfaceView version="1.3" asn1file="aes-256-RH71.acn" UiFile="interfaceview.ui.xml" modifierHash="383508e">
+<Function id="{c1ed13f2-39dd-41d4-be8d-bc326c945b6e}" name="AES256ECB" is_type="NO" language="C" default_implementation="default" fixed_system_element="NO" required_system_element="NO" instances_min="1" instances_max="1" startup_priority="1">
+    <Property name="TASTE_IV_Properties::Default_Codegen" value="Ada"/>
+<Provided_Interface id="{2b08e670-7330-4b94-9f3c-9cf0410f472d}" name="initCtx" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256ECBContext" encoding="NATIVE"/>
+    <Input_Parameter name="key" type="AES256Key" encoding="NATIVE"/>
+</Provided_Interface>
+
+<Provided_Interface id="{7a06404f-be62-4df1-a0ef-29145e297220}" name="encrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Input_Parameter name="ctx" type="AES256ECBContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256Buffer" encoding="NATIVE"/>
+</Provided_Interface>
+
+<Provided_Interface id="{62317378-cfab-4a76-b32f-8e748286f75a}" name="decrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Input_Parameter name="ctx" type="AES256ECBContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256Buffer" encoding="NATIVE"/>
+</Provided_Interface>
+
+    <Implementations>
+        <Implementation name="default" language="C"/>
+    </Implementations>
+</Function>
+
+<Function id="{bae0879e-9bb1-462a-ac16-0861a7aac92c}" name="TestHarness" is_type="NO" language="C" default_implementation="default" fixed_system_element="NO" required_system_element="NO" instances_min="1" instances_max="1" startup_priority="1">
+    <Property name="TASTE_IV_Properties::Default_Codegen" value="Ada"/>
+<Provided_Interface id="{08056600-0fdd-4515-a124-2f2c2b03e874}" name="run" kind="Cyclic" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" dispatch_offset="0" priority="1" period="1000" stack_size="16384" wcet="0">
+</Provided_Interface>
+
+<Provided_Interface id="{f7b2bf7e-cf4b-4d9a-875c-695997e379ad}" name="samrh71rx" kind="Sporadic" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" priority="1" miat="0" queue_size="1" stack_size="1024" wcet="0">
+    <Input_Parameter name="iByteIn" type="T-UInt8" encoding="ACN"/>
+</Provided_Interface>
+
+<Required_Interface id="{aeb29a97-f8db-4c5d-a3d1-cff6d7bac540}" name="AES256ECBInitCtx" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256ECBContext" encoding="NATIVE"/>
+    <Input_Parameter name="key" type="AES256Key" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{219f8ae6-c955-4b6d-b3ab-09950d812f67}" name="AES256ECBEncrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Input_Parameter name="ctx" type="AES256ECBContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256Buffer" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{a1ae2b3a-72f0-430e-b69d-86a3e8a0b355}" name="AES256ECBDecrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Input_Parameter name="ctx" type="AES256ECBContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256Buffer" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{f5f9ed03-8622-4ed6-9806-db427161ec5f}" name="AES256CBCInitCtx" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CBCContext" encoding="NATIVE"/>
+    <Input_Parameter name="key" type="AES256Key" encoding="NATIVE"/>
+    <Input_Parameter name="iv" type="AES256Block" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{b082c265-6e7a-4047-8152-17a3a2f22ecb}" name="AES256CBCEncrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CBCContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{b6d6be07-cbd2-4409-8c3e-12bf69f53a41}" name="AES256CBCDecrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CBCContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{ce3c3a0e-aeb8-4efd-ba1b-4412e2da43d3}" name="AES256CTRInitCtx" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CTRContext" encoding="NATIVE"/>
+    <Input_Parameter name="key" type="AES256Key" encoding="NATIVE"/>
+    <Input_Parameter name="iv" type="AES256Block" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{a20dc594-17ba-4762-81d9-6134d7ab83ca}" name="AES256CTREncrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CTRContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{8e671131-868d-4004-8212-a3454d427be1}" name="AES256CTRDecrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CTRContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{7b5a081c-c1a9-44a5-9ae3-f8f11e4f4178}" name="samrh71tx" kind="Sporadic" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" priority="1" miat="0" queue_size="1" stack_size="1024" wcet="0">
+    <Input_Parameter name="iByteOut" type="T-UInt8" encoding="ACN"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="true"/>
+</Required_Interface>
+
+<Required_Interface id="{ebda7e0d-1f62-4448-8584-a3a9c912d3c6}" name="AES256Decrypt" kind="Protected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" wcet="0">
+    <Input_Parameter name="key" type="AES256-Key" encoding="NATIVE"/>
+    <Input_Parameter name="ciphertext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="plaintext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="status" type="Crypto-Status" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+<Required_Interface id="{351dbbac-2872-4064-9e32-467992e05c77}" name="AES256Encrypt" kind="Protected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" wcet="0">
+    <Input_Parameter name="key" type="AES256-Key" encoding="NATIVE"/>
+    <Input_Parameter name="plaintext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="ciphertext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="status" type="Crypto-Status" encoding="NATIVE"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+    <Implementations>
+        <Implementation name="default" language="C"/>
+    </Implementations>
+</Function>
+
+<Function id="{836adec5-1438-4dd8-a841-372a9ecd7b30}" name="AES256CBC" is_type="NO" language="C" default_implementation="default" fixed_system_element="NO" required_system_element="NO" instances_min="1" instances_max="1" startup_priority="1">
+    <Property name="TASTE_IV_Properties::Default_Codegen" value="Ada"/>
+<Provided_Interface id="{2c590dd7-bab9-477d-969b-c79480fd3ef2}" name="initCtx" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CBCContext" encoding="NATIVE"/>
+    <Input_Parameter name="key" type="AES256Key" encoding="NATIVE"/>
+    <Input_Parameter name="iv" type="AES256Block" encoding="NATIVE"/>
+</Provided_Interface>
+
+<Provided_Interface id="{43a2bd26-6421-4659-9e27-a0b26f658046}" name="encrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CBCContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+</Provided_Interface>
+
+<Provided_Interface id="{f90005b2-07db-4967-8ece-0ff70d17d5b3}" name="decrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CBCContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+</Provided_Interface>
+
+    <Implementations>
+        <Implementation name="default" language="C"/>
+    </Implementations>
+</Function>
+
+<Function id="{2ca32b8b-e2ed-4d4a-87ec-d7cddf0db32a}" name="AES256CTR" is_type="NO" language="C" default_implementation="default" fixed_system_element="NO" required_system_element="NO" instances_min="1" instances_max="1" startup_priority="1">
+    <Property name="TASTE_IV_Properties::Default_Codegen" value="Ada"/>
+<Provided_Interface id="{de3b753e-d31e-4116-b8a4-9e46f61af30f}" name="initCtx" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CTRContext" encoding="NATIVE"/>
+    <Input_Parameter name="key" type="AES256Key" encoding="NATIVE"/>
+    <Input_Parameter name="iv" type="AES256Block" encoding="NATIVE"/>
+</Provided_Interface>
+
+<Provided_Interface id="{2387f6d2-b1d8-4679-847f-7b8d0988acea}" name="encrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CTRContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+</Provided_Interface>
+
+<Provided_Interface id="{64fed732-f3d2-4f12-b8ee-e2f11708362d}" name="decrypt" kind="Unprotected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" is_alarm="false" is_observable="false" wcet="0">
+    <Output_Parameter name="ctx" type="AES256CTRContext" encoding="NATIVE"/>
+    <Output_Parameter name="buf" type="AES256VariableLengthBuffer" encoding="NATIVE"/>
+</Provided_Interface>
+
+    <Implementations>
+        <Implementation name="default" language="C"/>
+    </Implementations>
+</Function>
+
+<Function id="{c51de6cb-76c7-4d04-9ab3-5c3f50c69886}" name="UartOtherEnd" is_type="NO" language="SDL" default_implementation="default" fixed_system_element="NO" required_system_element="NO" instances_min="1" instances_max="1" startup_priority="1">
+    <Property name="TASTE_IV_Properties::Default_Codegen" value="C"/>
+<Provided_Interface id="{1119b530-b302-4aef-84bf-468760640cf4}" name="samrh71tx" kind="Sporadic" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" priority="1" miat="0" queue_size="1" stack_size="1024" wcet="0">
+    <Input_Parameter name="iByteOut" type="T-UInt8" encoding="ACN"/>
+</Provided_Interface>
+
+<Required_Interface id="{a801627b-72c9-48f3-b04c-9e5cc10d26e0}" name="samrh71rx" kind="Sporadic" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" priority="1" miat="0" queue_size="1" stack_size="1024" wcet="0">
+    <Input_Parameter name="iByteIn" type="T-UInt8" encoding="ACN"/>
+    <Property name="Taste::InheritPI" value="true"/>
+    <Property name="Taste::Autonamed" value="false"/>
+</Required_Interface>
+
+    <Implementations>
+        <Implementation name="default" language="SDL"/>
+    </Implementations>
+</Function>
+
+<Function id="{943a45e1-e67e-4543-af6e-f71859699520}" name="AES256" is_type="NO" language="C" default_implementation="default" fixed_system_element="NO" required_system_element="NO" componentURL="/home/taste/.local/share/QtProject/QtCreator/components_library/.git_bares/AES256_bare" instances_min="1" instances_max="1" startup_priority="1">
+    <Property name="TASTE_IV_Properties::Default_Codegen" value="C"/>
+<Provided_Interface id="{5a92c381-da21-4cc7-ad82-267eb8275cc3}" name="encrypt" kind="Protected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" wcet="0">
+    <Input_Parameter name="key" type="AES256-Key" encoding="NATIVE"/>
+    <Input_Parameter name="plaintext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="ciphertext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="status" type="Crypto-Status" encoding="NATIVE"/>
+</Provided_Interface>
+
+<Provided_Interface id="{19c914f7-fd9a-4cd9-8ebe-5b068ca94725}" name="decrypt" kind="Protected" enable_multicast="true" layer="default" required_system_element="NO" is_simulink_interface="false" wcet="0">
+    <Input_Parameter name="key" type="AES256-Key" encoding="NATIVE"/>
+    <Input_Parameter name="ciphertext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="plaintext" type="AES-Block" encoding="NATIVE"/>
+    <Output_Parameter name="status" type="Crypto-Status" encoding="NATIVE"/>
+</Provided_Interface>
+
+    <Implementations>
+        <Implementation name="default" language="C"/>
+    </Implementations>
+</Function>
+
+<Connection id="{14d7e580-01b9-4922-9d8a-64ebc8025d8d}" required_system_element="NO">
+    <Source iface_id="{219f8ae6-c955-4b6d-b3ab-09950d812f67}" func_name="TestHarness" ri_name="AES256ECBEncrypt" />
+    <Target iface_id="{7a06404f-be62-4df1-a0ef-29145e297220}" func_name="AES256ECB" pi_name="encrypt" />
+</Connection>
+
+<Connection id="{f96886f2-a22f-4f0a-aeb4-0a127ed82393}" required_system_element="NO">
+    <Source iface_id="{a20dc594-17ba-4762-81d9-6134d7ab83ca}" func_name="TestHarness" ri_name="AES256CTREncrypt" />
+    <Target iface_id="{2387f6d2-b1d8-4679-847f-7b8d0988acea}" func_name="AES256CTR" pi_name="encrypt" />
+</Connection>
+
+<Connection id="{6b63c855-5962-40e5-8582-04ec41f81306}" required_system_element="NO">
+    <Source iface_id="{ce3c3a0e-aeb8-4efd-ba1b-4412e2da43d3}" func_name="TestHarness" ri_name="AES256CTRInitCtx" />
+    <Target iface_id="{de3b753e-d31e-4116-b8a4-9e46f61af30f}" func_name="AES256CTR" pi_name="initCtx" />
+</Connection>
+
+<Connection id="{ea38f87f-919b-41df-a9d8-909e621dbc2f}" name="TestHarness_AES256Encrypt____AES256_encrypt" required_system_element="NO">
+    <Source iface_id="{351dbbac-2872-4064-9e32-467992e05c77}" func_name="TestHarness" ri_name="AES256Encrypt" />
+    <Target iface_id="{5a92c381-da21-4cc7-ad82-267eb8275cc3}" func_name="AES256" pi_name="encrypt" />
+</Connection>
+
+<Connection id="{1c1d19ad-dfca-460c-adc7-cee96d866ecf}" required_system_element="NO">
+    <Source iface_id="{7b5a081c-c1a9-44a5-9ae3-f8f11e4f4178}" func_name="TestHarness" ri_name="samrh71tx" />
+    <Target iface_id="{1119b530-b302-4aef-84bf-468760640cf4}" func_name="UartOtherEnd" pi_name="samrh71tx" />
+</Connection>
+
+<Connection id="{1f13fcf9-b362-457d-a7ff-8a20543fa1ff}" required_system_element="NO">
+    <Source iface_id="{f5f9ed03-8622-4ed6-9806-db427161ec5f}" func_name="TestHarness" ri_name="AES256CBCInitCtx" />
+    <Target iface_id="{2c590dd7-bab9-477d-969b-c79480fd3ef2}" func_name="AES256CBC" pi_name="initCtx" />
+</Connection>
+
+<Connection id="{5f74bfec-ce6d-4dc8-af01-8afdd4b5f39e}" required_system_element="NO">
+    <Source iface_id="{b6d6be07-cbd2-4409-8c3e-12bf69f53a41}" func_name="TestHarness" ri_name="AES256CBCDecrypt" />
+    <Target iface_id="{f90005b2-07db-4967-8ece-0ff70d17d5b3}" func_name="AES256CBC" pi_name="decrypt" />
+</Connection>
+
+<Connection id="{d99327cf-327e-457a-b4fd-42f7d13ae1de}" required_system_element="NO">
+    <Source iface_id="{a1ae2b3a-72f0-430e-b69d-86a3e8a0b355}" func_name="TestHarness" ri_name="AES256ECBDecrypt" />
+    <Target iface_id="{62317378-cfab-4a76-b32f-8e748286f75a}" func_name="AES256ECB" pi_name="decrypt" />
+</Connection>
+
+<Connection id="{ae052e8c-39d5-4ba1-9824-ecf9031e7b3e}" required_system_element="NO">
+    <Source iface_id="{a801627b-72c9-48f3-b04c-9e5cc10d26e0}" func_name="UartOtherEnd" ri_name="samrh71rx" />
+    <Target iface_id="{f7b2bf7e-cf4b-4d9a-875c-695997e379ad}" func_name="TestHarness" pi_name="samrh71rx" />
+</Connection>
+
+<Connection id="{b3ecfadd-d5b8-4c8d-9f2d-976d529bc61f}" required_system_element="NO">
+    <Source iface_id="{8e671131-868d-4004-8212-a3454d427be1}" func_name="TestHarness" ri_name="AES256CTRDecrypt" />
+    <Target iface_id="{64fed732-f3d2-4f12-b8ee-e2f11708362d}" func_name="AES256CTR" pi_name="decrypt" />
+</Connection>
+
+<Connection id="{d319224d-6e87-43cb-8acd-17e7cd4bd492}" required_system_element="NO">
+    <Source iface_id="{aeb29a97-f8db-4c5d-a3d1-cff6d7bac540}" func_name="TestHarness" ri_name="AES256ECBInitCtx" />
+    <Target iface_id="{2b08e670-7330-4b94-9f3c-9cf0410f472d}" func_name="AES256ECB" pi_name="initCtx" />
+</Connection>
+
+<Connection id="{073a84a1-d17d-46da-9e9a-28ad2aaf7d57}" name="TestHarness_AES256Decrypt____AES256_decrypt" required_system_element="NO">
+    <Source iface_id="{ebda7e0d-1f62-4448-8584-a3a9c912d3c6}" func_name="TestHarness" ri_name="AES256Decrypt" />
+    <Target iface_id="{19c914f7-fd9a-4cd9-8ebe-5b068ca94725}" func_name="AES256" pi_name="decrypt" />
+</Connection>
+
+<Connection id="{9cb9afa8-67d6-4cf8-84af-7c21f8fc1e7b}" required_system_element="NO">
+    <Source iface_id="{b082c265-6e7a-4047-8152-17a3a2f22ecb}" func_name="TestHarness" ri_name="AES256CBCEncrypt" />
+    <Target iface_id="{43a2bd26-6421-4659-9e27-a0b26f658046}" func_name="AES256CBC" pi_name="encrypt" />
+</Connection>
+
+<Comment id="{38590d94-8d0e-42cd-b0eb-3bda3589c2c9}" name="AES256 is the Reusable Component for SDLS. All others are prototype work only" required_system_element="NO">
+</Comment>
+
+<Layer name="default" is_visible="true"/>
+
+</InterfaceView>
